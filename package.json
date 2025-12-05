@@ -1,0 +1,22 @@
+{
+  "name": "automation_assignment",
+  "version": "1.0.0",
+  "description": "Playwright automation for Automation Anywhere assignment",
+  "main": "index.js",
+  "scripts": {
+    "test": "npx playwright test",
+    "test:headed": "npx playwright test --headed",
+    "test:report": "npx playwright show-report",
+    "install-browsers": "npx playwright install"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@playwright/test": "^1.57.0",
+    "@types/node": "^24.10.1"
+  },
+  "dependencies": {
+    "dotenv": "^17.2.3"
+  }
+}
