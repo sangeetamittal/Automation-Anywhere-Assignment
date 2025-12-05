@@ -33,7 +33,6 @@ class MessageBoxPage {
     try {
       await this.messageTitleInput.fill(title);
     } catch (e) {
-      // fallback: click + keyboard typing
       await this.messageTitleInput.click();
       const modifier = process.platform === 'darwin' ? 'Meta' : 'Control';
       await this.page.keyboard.press(`${modifier}+A`);

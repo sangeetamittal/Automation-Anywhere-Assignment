@@ -1,8 +1,5 @@
 // pages/loginPage.js
 class LoginPage {
-  /**
-   * @param {import('@playwright/test').Page} page
-   */
   constructor(page) {
     this.page = page;
     this.emailInput = page.locator('input[name="username"]'); 

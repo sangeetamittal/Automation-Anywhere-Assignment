@@ -1,16 +1,8 @@
 class ApiValidator {
 
-    /**
-     * Validates the GET /learninginstances response after creation.
-     * Includes:
-     *  - HTTP status
-     *  - Response time
-     *  - Instance exists in body
-     *  - Correct name & fields
-     */
     static async validateLearningInstancesList(page, expectedName, timeout = 60000) {
 
-        const start = Date.now(); // measure response time manually
+        const start = Date.now(); 
 
         const response = await page.waitForResponse(resp => {
             const url = resp.url().toLowerCase();
@@ -24,12 +16,10 @@ class ApiValidator {
 
         const responseTime = Date.now() - start;
 
-        // Status check
         if (response.status() !== 200) {
             throw new Error(`GET /learninginstances/list returned ${response.status()} instead of 200`);
         }
 
-        // Parse body
         let body;
         try {
             body = await response.json();
@@ -43,7 +33,6 @@ class ApiValidator {
             throw new Error(`GET /learninginstances/list response has no 'list' array. Preview: ${preview}`);
         }
 
-        // Find your instance
         const match = body.list.find(item => {
             if (!item || typeof item !== 'object') return false;
             if (typeof item.name === 'string' && item.name === expectedName) return true;
@@ -60,7 +49,6 @@ class ApiValidator {
         if (!match.id) {
             throw new Error(`Instance "${expectedName}" found but missing 'id'`);
         }
-        // You can extend with other field checks here (status, id, createdOn, etc.)
 
         return {
             status: response.status(),
